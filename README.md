@@ -7,10 +7,10 @@ Action to Install [Trivy](https://github.com/aquasecurity/trivy) CLI
 
 ### Features
 
-* Allow to specify a version to install
-* Cache and restore the downloaded binary
-* Tested on GitHub and Gitea Actions
-* Tested on Ubuntu runner and should work on `X86_64` and `arm64`
+* Pin an exact version, or always install the `latest` one
+* Caches the binary between runs, keyed by version, operating system and architecture
+* Runs on both GitHub and Gitea Actions
+* Tested on Ubuntu runners, and should work on `X86_64` and `arm64`
 
 ### Usage
 
@@ -27,7 +27,7 @@ jobs:
       - name: Install Trivy CLI
         uses: ankurk91/install-trivy-cli-action@v2
         with:
-          version: latest # or a specific version like 'v0.64.0'
+          version: latest # or a specific version like 'v0.70.0'
           cache: true # or set to false, true by default
 
       - name: Run Trivy scan
@@ -44,7 +44,7 @@ jobs:
 ### Must read
 
 > [!TIP]
-> The version must be a valid tag, and usually start with `v`
+> The version must be `latest` or a valid tag like `v0.70.0`, the leading `v` is required.
 
 > [!IMPORTANT]
 > Cache will not work with `latest` version as this is intended to download latest version always.
